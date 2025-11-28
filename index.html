@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Angelica's English Courses for Kids</title>
+  <style>
+    /* ======= ОБЩИЕ СТИЛИ ======= */
+    :root {
+      /* Мягкая, дружелюбная палитра */
+      --primary: #4a90e2;       /* мягкий синий */
+      --secondary: #50c878;     /* свежая бирюза/зелень */
+      --light-bg: #f9f7f0;      /* кремовый фон */
+      --card-bg: #ffffff;
+      --text: #333333;
+      --shadow: rgba(0, 0, 0, 0.1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: var(--light-bg);
+      color: var(--text);
+      padding: 20px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      font-size: 1.1rem;
+      color: #666;
+    }
+
+    /* ======= КАРТОЧКИ КУРСОВ ======= */
+    .courses-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .course-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 6px 20px var(--shadow);
+      transition: transform 0.3s ease;
+    }
+
+    .course-card:hover {
+      transform: translateY(-8px);
+    }
+
+    .course-image {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      background-color: #e0f0ff; /* fallback, если картинка не загрузится */
+    }
+
+    .course-content {
+      padding: 20px;
+    }
+
+    .course-title {
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+      color: var(--primary);
+    }
+
+    .course-desc {
+      font-size: 0.95rem;
+      color: #555;
+      margin-bottom: 12px;
+    }
+
+    .course-price {
+      font-weight: bold;
+      font-size: 1.2rem;
+      color: var(--secondary);
+      margin-bottom: 12px;
+    }
+
+    .buy-btn {
+      background-color: var(--secondary);
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.2s;
+    }
+
+    .buy-btn:hover {
+      background-color: #3cb766;
+    }
+
+    /* ======= МОДАЛЬНОЕ ОКНО ======= */
+    .modal {
+      display: none; /* Изначально скрыто */
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .modal-content {
+      background: var(--card-bg);
+      border-radius: 20px;
+      width: 90%;
+      max-width: 800px;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #888;
+    }
+
+    .modal-header {
+      padding: 20px 20px 0;
+    }
+
+    .modal-title {
+      font-size: 1.8rem;
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+
+    /* ======= КАРУСЕЛЬ ИЗОБРАЖЕНИЙ ======= */
+    .carousel {
+      position: relative;
+      width: 100%;
+      margin: 20px 0;
+      overflow: hidden;
+      border-radius: 12px;
+      height: 250px;
+    }
+
+    .carousel-images {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+      height: 100%;
+    }
+
+    .carousel-image {
+      min-width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .carousel-nav {
+      display: flex;
+      justify-content: center;
+      margin-top: 10px;
+    }
+
+    .carousel-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #ccc;
+      margin: 0 5px;
+      cursor: pointer;
+    }
+
+    .carousel-dot.active {
+      background: var(--secondary);
+    }
+
+    .modal-body {
+      padding: 0 20px 20px;
+    }
+
+    .modal-desc {
+      margin: 15px 0;
+      line-height: 1.6;
+    }
+
+    .modal-price {
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: var(--secondary);
+      margin: 10px 0;
+    }
+
+    .modal-buy-btn {
+      background-color: var(--secondary);
+      color: white;
+      border: none;
+      padding: 10px 24px;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 15px;
+    }
+
+    .modal-buy-btn:hover {
+      background-color: #3cb766;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>✨ English Adventures for Kids</h1>
+    <p class="subtitle">Fun, engaging, and effective English courses for children aged 6–12</p>
+  </header>
+
+  <main>
+    <div class="courses-grid">
+      <!-- ============ КУРС 1 ============ -->
+      <div class="course-card">
+        <img src="https://via.placeholder.com/300x180/e0f0ff/4a90e2?text=Play+English" alt="English Through Play" class="course-image">
+        <div class="course-content">
+          <h3 class="course-title">English Through Play</h3>
+          <p class="course-desc">Learn English through songs, games, and creative activities!</p>
+          <div class="course-price">$99</div>
+          <button class="buy-btn" onclick="openModal(0)">Buy now</button>
+        </div>
+      </div>
+
+      <!-- ============ КУРС 2 ============ -->
+      <div class="course-card">
+        <img src="https://via.placeholder.com/300x180/e0f7fa/00796b?text=Fun+Phonics" alt="Fun Phonics" class="course-image">
+        <div class="course-content">
+          <h3 class="course-title">Fun Phonics</h3>
+          <p class="course-desc">Master reading with joyful phonics lessons and colorful stories.</p>
+          <div class="course-price">$89</div>
+          <button class="buy-btn" onclick="openModal(1)">Buy now</button>
+        </div>
+      </div>
+
+      <!-- ============ КУРС 3 ============ -->
+      <div class="course-card">
+        <img src="https://via.placeholder.com/300x180/f3e5ab/d46a00?text=Little+Explorers" alt="English for Little Explorers" class="course-image">
+        <div class="course-content">
+          <h3 class="course-title">Little Explorers</h3>
+          <p class="course-desc">Discover the world in English: animals, space, oceans & more!</p>
+          <div class="course-price">$109</div>
+          <button class="buy-btn" onclick="openModal(2)">Buy now</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ============ МОДАЛЬНОЕ ОКНО ============ -->
+  <div class="modal" id="courseModal">
+    <div class="modal-content">
+      <span class="close-modal" onclick="closeModal()">&times;</span>
+      <div class="modal-header">
+        <h2 class="modal-title" id="modalTitle">Course Title</h2>
+      </div>
+
+      <!-- Карусель -->
+      <div class="carousel">
+        <div class="carousel-images" id="carouselImages">
+          <!-- Сюда будут подставляться изображения -->
+        </div>
+        <div class="carousel-nav" id="carouselDots">
+          <!-- Точки навигации -->
+        </div>
+      </div>
+
+      <div class="modal-body">
+        <p class="modal-desc" id="modalDesc">Full course description will appear here.</p>
+        <div class="modal-price" id="modalPrice">$99</div>
+        <!-- СЮДА ВСТАВЬТЕ СВОЮ КНОПКУ: форму, ссылку и т.д. -->
+        <button class="modal-buy-btn" onclick="alert('Replace this with your payment link!')">Buy Now</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ====== ДАННЫЕ ВАШИХ КУРСОВ ======
+    // Здесь вы можете добавлять / редактировать курсы.
+    // Для каждой карточки: title, shortDesc, fullDesc, price, images (массив URL)
+    const courses = [
+      {
+        title: "English Through Play",
+        shortDesc: "Learn English through songs, games, and creative activities!",
+        fullDesc: "This joyful course helps children aged 6–9 develop speaking and listening skills through interactive games, puppet shows, singing, and art projects. No boring drills — only fun and natural language acquisition!",
+        price: "$99",
+        images: [
+          "https://via.placeholder.com/600x300/e0f0ff/4a90e2?text=Game+Time",
+          "https://via.placeholder.com/600x300/ffe0f0/e04a90?text=Singing+Together",
+          "https://via.placeholder.com/600x300/f0ffe0/4ae090?text=Craft+English"
+        ]
+      },
+      {
+        title: "Fun Phonics",
+        shortDesc: "Master reading with joyful phonics lessons and colorful stories.",
+        fullDesc: "Designed for beginners (ages 6–8), this course uses playful phonics to teach letter sounds, blending, and early reading. Includes animated stories, sound flashcards, and weekly reading challenges.",
+        price: "$89",
+        images: [
+          "https://via.placeholder.com/600x300/e0f7fa/00796b?text=Phonics+Fun",
+          "https://via.placeholder.com/600x300/d1c4e9/5e35b1?text=Letter+Adventures"
+        ]
+      },
+      {
+        title: "Little Explorers",
+        shortDesc: "Discover the world in English: animals, space, oceans & more!",
+        fullDesc: "Perfect for curious minds (ages 8–12)! Each week explores a new theme: jungle animals, planets, ancient Egypt, or ocean life — all in immersive English with videos, quizzes, and mini-projects.",
+        price: "$109",
+        images: [
+          "https://via.placeholder.com/600x300/f3e5ab/d46a00?text=Space+Mission",
+          "https://via.placeholder.com/600x300/c8e6c9/2e7d32?text=Jungle+Adventure",
+          "https://via.placeholder.com/600x300/b3e5fc/0288d1?text=Ocean+World"
+        ]
+      }
+    ];
+
+    let currentSlide = 0;
+    let currentCourseIndex = 0;
+
+    // ====== ОТКРЫТЬ МОДАЛЬНОЕ ОКНО ======
+    function openModal(courseIndex) {
+      const course = courses[courseIndex];
+      currentCourseIndex = courseIndex;
+
+      // Заполняем данные
+      document.getElementById("modalTitle").textContent = course.title;
+      document.getElementById("modalDesc").textContent = course.fullDesc;
+      document.getElementById("modalPrice").textContent = course.price;
+
+      // Очищаем старую карусель
+      const carouselImages = document.getElementById("carouselImages");
+      const carouselDots = document.getElementById("carouselDots");
+      carouselImages.innerHTML = "";
+      carouselDots.innerHTML = "";
+
+      // Добавляем изображения
+      course.images.forEach((imgUrl, index) => {
+        const img = document.createElement("img");
+        img.src = imgUrl;
+        img.alt = `Slide ${index + 1} for ${course.title}`;
+        img.className = "carousel-image";
+        carouselImages.appendChild(img);
+
+        // Точки навигации
+        const dot = document.createElement("div");
+        dot.className = "carousel-dot" + (index === 0 ? " active" : "");
+        dot.addEventListener("click", () => goToSlide(index));
+        carouselDots.appendChild(dot);
+      });
+
+      // Показываем модальное окно
+      document.getElementById("courseModal").style.display = "flex";
+      currentSlide = 0;
+    }
+
+    // ====== ЗАКРЫТЬ МОДАЛЬНОЕ ОКНО ======
+    function closeModal() {
+      document.getElementById("courseModal").style.display = "none";
+    }
+
+    // ====== КАРУСЕЛЬ: ПЕРЕКЛЮЧЕНИЕ СЛАЙДОВ ======
+    function goToSlide(index) {
+      currentSlide = index;
+      const carousel = document.getElementById("carouselImages");
+      carousel.style.transform = `translateX(-${index * 100}%)`;
+
+      // Обновляем активную точку
+      const dots = document.querySelectorAll(".carousel-dot");
+      dots.forEach((dot, i) => {
+        dot.classList.toggle("active", i === index);
+      });
+    }
+
+    // ====== ЗАКРЫТИЕ ПО КЛИКУ ВНЕ КОНТЕНТА ======
+    window.addEventListener("click", (e) => {
+      const modal = document.getElementById("courseModal");
+      if (e.target === modal) {
+        closeModal();
+      }
+    });
+
+    // ====== КЛАВИША ESC ДЛЯ ЗАКРЫТИЯ ======
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        closeModal();
+      }
+    });
+  </script>
+</body>
+</html>
