@@ -4,14 +4,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Angelica's English Courses for Kids</title>
+
+  <!-- Подключение шрифта Nunito (дружелюбный, детский, современный) -->
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&display=swap" rel="stylesheet">
+
   <style>
     :root {
-      --primary: #4a90e2;       /* мягкий синий */
-      --secondary: #50c878;     /* свежая бирюза/зелень */
-      --light-bg: #79e9f7;      /* светло-бирюзовый фон */
+      --primary: #4a90e2;
+      --secondary: #50c878;
+      --light-bg: #79e9f7;
       --card-bg: #ffffff;
       --text: #333333;
-      --desc-text: #555;        /* для описаний в карточках */
+      --desc-text: #555;
       --shadow: rgba(0, 0, 0, 0.1);
     }
 
@@ -42,7 +46,7 @@
 
     .subtitle {
       font-size: 1.1rem;
-      color: var(--primary);   /* СДЕЛАНО СИНИМ, КАК В МАКЕТЕ */
+      color: var(--primary);
       font-weight: 400;
       line-height: 1.5;
     }
@@ -84,11 +88,14 @@
       color: var(--primary);
     }
 
+    /* === ШРИФТ ДЛЯ ОПИСАНИЯ В КАРТОЧКАХ === */
     .course-desc {
       font-size: 0.95rem;
-      color: var(--desc-text);   /* ТЁПЛЫЙ ТЁМНО-СЕРЫЙ — НЕ ТУСКЛЫЙ */
+      color: var(--desc-text);
       margin-bottom: 14px;
       line-height: 1.5;
+      font-family: 'Nunito', sans-serif; /* ← НОВЫЙ ШРИФТ */
+      font-weight: 400;
     }
 
     .course-price {
@@ -208,6 +215,8 @@
       margin: 15px 0;
       line-height: 1.6;
       color: var(--desc-text);
+      font-family: 'Nunito', sans-serif; /* ← Также в модальном окне */
+      font-weight: 400;
     }
 
     .modal-price {
