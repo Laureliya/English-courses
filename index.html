@@ -65,28 +65,33 @@
       overflow: hidden;
       box-shadow: 0 6px 20px var(--shadow);
       transition: transform 0.3s ease;
-      padding: 15px;
+      padding: 20px; /* Отступы вокруг всего */
     }
 
-    /* === КОНТЕЙНЕР ДЛЯ ФОТО — СМЕЩАЕМ ВПРАВО === */
+    .course-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 24px rgba(74, 144, 226, 0.2);
+    }
+
     .image-container {
       width: 100%;
       display: flex;
-      justify-content: flex-start; /* ← Выравниваем по левому краю */
-      padding-left: 20px; /* ← Смещаем вправо */
+      justify-content: center;
+      margin-bottom: 20px;
     }
 
     .course-image {
-      width: 280px;
+      width: 260px; /* Чуть уже, чтобы были белые поля */
       height: 180px;
       object-fit: cover;
       object-position: center;
-      border-radius: 16px 16px 0 0;
+      border-radius: 12px;
       background-color: #e0f0ff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
     }
 
     .course-content {
-      padding: 20px;
+      text-align: center;
     }
 
     .course-title {
@@ -163,8 +168,13 @@
       color: #888;
     }
 
+    .close-modal:hover {
+      color: #333;
+    }
+
     .modal-header {
       padding: 20px 20px 0;
+      text-align: center;
     }
 
     .modal-title {
@@ -215,6 +225,7 @@
 
     .modal-body {
       padding: 0 20px 20px;
+      text-align: center;
     }
 
     .modal-desc {
