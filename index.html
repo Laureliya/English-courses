@@ -10,7 +10,7 @@
       /* Мягкая, дружелюбная палитра */
       --primary: #4a90e2;       /* мягкий синий */
       --secondary: #50c878;     /* свежая бирюза/зелень */
-      --light-bg:  #79e9f7;      /* кремовый фон */
+      --light-bg:  #79e9f7;     /* светло-бирюзовый фон */
       --card-bg: #ffffff;
       --text: #333333;
       --shadow: rgba(0, 0, 0, 0.1);
@@ -44,6 +44,8 @@
     .subtitle {
       font-size: 1.1rem;
       color: #666;
+      /* 👇 СЮДА можно добавить другой шрифт, если нужно */
+      /* font-family: 'Comic Sans MS', cursive; */
     }
 
     /* ======= КАРТОЧКИ КУРСОВ ======= */
@@ -71,7 +73,7 @@
       width: 100%;
       height: 180px;
       object-fit: cover;
-      background-color: #e0f0ff; /* fallback, если картинка не загрузится */
+      background-color: #e0f0ff;
     }
 
     .course-content {
@@ -114,7 +116,7 @@
 
     /* ======= МОДАЛЬНОЕ ОКНО ======= */
     .modal {
-      display: none; /* Изначально скрыто */
+      display: none;
       position: fixed;
       top: 0;
       left: 0;
@@ -253,21 +255,21 @@
 
       <!-- ============ КУРС 2 ============ -->
       <div class="course-card">
-        <img src="https://via.placeholder.com/300x180/e0f7fa/00796b?text=Fun+Phonics" alt="Fun Phonics" class="course-image">
+        <img src="https://via.placeholder.com/300x180/e0f0ff/4a90e2?text=Story+Time" alt="Story Time English" class="course-image">
         <div class="course-content">
-          <h3 class="course-title">Fun Phonics</h3>
-          <p class="course-desc">Master reading with joyful phonics lessons and colorful stories.</p>
-          <div class="course-price">$89</div>
+          <h3 class="course-title">Story Time English</h3>
+          <p class="course-desc">Engaging stories to build vocabulary and listening skills.</p>
+          <div class="course-price">$119</div>
           <button class="buy-btn" onclick="openModal(1)">Buy now</button>
         </div>
       </div>
 
       <!-- ============ КУРС 3 ============ -->
       <div class="course-card">
-        <img src="https://via.placeholder.com/300x180/f3e5ab/d46a00?text=Little+Explorers" alt="English for Little Explorers" class="course-image">
+        <img src="https://via.placeholder.com/300x180/e0f0ff/4a90e2?text=Grammar+Fun" alt="Grammar Fun" class="course-image">
         <div class="course-content">
-          <h3 class="course-title">Little Explorers</h3>
-          <p class="course-desc">Discover the world in English: animals, space, oceans & more!</p>
+          <h3 class="course-title">Grammar Fun</h3>
+          <p class="course-desc">Playful grammar practice for confident speaking and writing.</p>
           <div class="course-price">$109</div>
           <button class="buy-btn" onclick="openModal(2)">Buy now</button>
         </div>
@@ -280,138 +282,115 @@
     <div class="modal-content">
       <span class="close-modal" onclick="closeModal()">&times;</span>
       <div class="modal-header">
-        <h2 class="modal-title" id="modalTitle">Course Title</h2>
+        <h2 class="modal-title" id="modalCourseTitle"></h2>
       </div>
-
-      <!-- Карусель -->
       <div class="carousel">
-        <div class="carousel-images" id="carouselImages">
-          <!-- Сюда будут подставляться изображения -->
-        </div>
-        <div class="carousel-nav" id="carouselDots">
-          <!-- Точки навигации -->
-        </div>
+        <div class="carousel-images" id="carouselImages"></div>
       </div>
-
+      <div class="carousel-nav" id="carouselDots"></div>
       <div class="modal-body">
-        <p class="modal-desc" id="modalDesc">Full course description will appear here.</p>
-        <div class="modal-price" id="modalPrice">$99</div>
-        <!-- СЮДА ВСТАВЬТЕ СВОЮ КНОПКУ: форму, ссылку и т.д. -->
-        <button class="modal-buy-btn" onclick="alert('Replace this with your payment link!')">Buy Now</button>
+        <p class="modal-desc" id="modalCourseDesc"></p>
+        <div class="modal-price" id="modalCoursePrice"></div>
+        <button class="modal-buy-btn">Buy now</button>
       </div>
     </div>
   </div>
 
   <script>
-    // ====== ДАННЫЕ ВАШИХ КУРСОВ ======
-    // Здесь вы можете добавлять / редактировать курсы.
-    // Для каждой карточки: title, shortDesc, fullDesc, price, images (массив URL)
+    // Данные курсов
     const courses = [
       {
         title: "English Through Play",
-        shortDesc: "Learn English through songs, games, and creative activities!",
-        fullDesc: "This joyful course helps children aged 6–9 develop speaking and listening skills through interactive games, puppet shows, singing, and art projects. No boring drills — only fun and natural language acquisition!",
+        desc: "Learn English through songs, games, and creative activities! Includes printable worksheets, audio tracks, and teacher's guide.",
         price: "$99",
         images: [
-          "https://via.placeholder.com/600x300/e0f0ff/4a90e2?text=Game+Time",
-          "https://via.placeholder.com/600x300/ffe0f0/e04a90?text=Singing+Together",
-          "https://via.placeholder.com/600x300/f0ffe0/4ae090?text=Craft+English"
+          "https://via.placeholder.com/800x250/e0f0ff/4a90e2?text=Play+English+1",
+          "https://via.placeholder.com/800x250/e0f0ff/4a90e2?text=Play+English+2",
+          "https://via.placeholder.com/800x250/e0f0ff/4a90e2?text=Play+English+3"
         ]
       },
       {
-        title: "Fun Phonics",
-        shortDesc: "Master reading with joyful phonics lessons and colorful stories.",
-        fullDesc: "Designed for beginners (ages 6–8), this course uses playful phonics to teach letter sounds, blending, and early reading. Includes animated stories, sound flashcards, and weekly reading challenges.",
-        price: "$89",
+        title: "Story Time English",
+        desc: "Engaging stories to build vocabulary and listening skills. Each story comes with comprehension questions and role-play ideas.",
+        price: "$119",
         images: [
-          "https://via.placeholder.com/600x300/e0f7fa/00796b?text=Phonics+Fun",
-          "https://via.placeholder.com/600x300/d1c4e9/5e35b1?text=Letter+Adventures"
+          "https://via.placeholder.com/800x250/e0f0ff/4a90e2?text=Story+Time+1",
+          "https://via.placeholder.com/800x250/e0f0ff/4a90e2?text=Story+Time+2"
         ]
       },
       {
-        title: "Little Explorers",
-        shortDesc: "Discover the world in English: animals, space, oceans & more!",
-        fullDesc: "Perfect for curious minds (ages 8–12)! Each week explores a new theme: jungle animals, planets, ancient Egypt, or ocean life — all in immersive English with videos, quizzes, and mini-projects.",
+        title: "Grammar Fun",
+        desc: "Playful grammar practice for confident speaking and writing. Designed as interactive exercises and printable board games.",
         price: "$109",
         images: [
-          "https://via.placeholder.com/600x300/f3e5ab/d46a00?text=Space+Mission",
-          "https://via.placeholder.com/600x300/c8e6c9/2e7d32?text=Jungle+Adventure",
-          "https://via.placeholder.com/600x300/b3e5fc/0288d1?text=Ocean+World"
+          "https://via.placeholder.com/800x250/e0f0ff/4a90e2?text=Grammar+Fun+1",
+          "https://via.placeholder.com/800x250/e0f0ff/4a90e2?text=Grammar+Fun+2",
+          "https://via.placeholder.com/800x250/e0f0ff/4a90e2?text=Grammar+Fun+3"
         ]
       }
     ];
 
-    let currentSlide = 0;
     let currentCourseIndex = 0;
+    let currentSlide = 0;
 
-    // ====== ОТКРЫТЬ МОДАЛЬНОЕ ОКНО ======
     function openModal(courseIndex) {
       const course = courses[courseIndex];
       currentCourseIndex = courseIndex;
+      currentSlide = 0;
 
       // Заполняем данные
-      document.getElementById("modalTitle").textContent = course.title;
-      document.getElementById("modalDesc").textContent = course.fullDesc;
-      document.getElementById("modalPrice").textContent = course.price;
+      document.getElementById('modalCourseTitle').textContent = course.title;
+      document.getElementById('modalCourseDesc').textContent = course.desc;
+      document.getElementById('modalCoursePrice').textContent = course.price;
 
-      // Очищаем старую карусель
-      const carouselImages = document.getElementById("carouselImages");
-      const carouselDots = document.getElementById("carouselDots");
-      carouselImages.innerHTML = "";
-      carouselDots.innerHTML = "";
-
-      // Добавляем изображения
-      course.images.forEach((imgUrl, index) => {
-        const img = document.createElement("img");
-        img.src = imgUrl;
-        img.alt = `Slide ${index + 1} for ${course.title}`;
-        img.className = "carousel-image";
-        carouselImages.appendChild(img);
-
-        // Точки навигации
-        const dot = document.createElement("div");
-        dot.className = "carousel-dot" + (index === 0 ? " active" : "");
-        dot.addEventListener("click", () => goToSlide(index));
-        carouselDots.appendChild(dot);
+      // Генерируем изображения
+      const imagesContainer = document.getElementById('carouselImages');
+      imagesContainer.innerHTML = '';
+      course.images.forEach(src => {
+        const img = document.createElement('img');
+        img.src = src;
+        img.className = 'carousel-image';
+        imagesContainer.appendChild(img);
       });
 
-      // Показываем модальное окно
-      document.getElementById("courseModal").style.display = "flex";
-      currentSlide = 0;
+      // Генерируем точки
+      const dotsContainer = document.getElementById('carouselDots');
+      dotsContainer.innerHTML = '';
+      course.images.forEach((_, i) => {
+        const dot = document.createElement('div');
+        dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+        dot.onclick = () => goToSlide(i);
+        dotsContainer.appendChild(dot);
+      });
+
+      // Показываем модалку
+      document.getElementById('courseModal').style.display = 'flex';
     }
 
-    // ====== ЗАКРЫТЬ МОДАЛЬНОЕ ОКНО ======
     function closeModal() {
-      document.getElementById("courseModal").style.display = "none";
+      document.getElementById('courseModal').style.display = 'none';
     }
 
-    // ====== КАРУСЕЛЬ: ПЕРЕКЛЮЧЕНИЕ СЛАЙДОВ ======
     function goToSlide(index) {
       currentSlide = index;
-      const carousel = document.getElementById("carouselImages");
-      carousel.style.transform = `translateX(-${index * 100}%)`;
+      const container = document.getElementById('carouselImages');
+      container.style.transform = `translateX(-${index * 100}%)`;
 
       // Обновляем активную точку
-      const dots = document.querySelectorAll(".carousel-dot");
+      const dots = document.querySelectorAll('.carousel-dot');
       dots.forEach((dot, i) => {
-        dot.classList.toggle("active", i === index);
+        dot.classList.toggle('active', i === index);
       });
     }
 
-    // ====== ЗАКРЫТИЕ ПО КЛИКУ ВНЕ КОНТЕНТА ======
-    window.addEventListener("click", (e) => {
-      const modal = document.getElementById("courseModal");
-      if (e.target === modal) {
+    // Закрытие по клику вне модального окна
+    window.onclick = function(event) {
+      const modal = document.getElementById('courseModal');
+      if (event.target === modal) {
         closeModal();
       }
-    });
-
-    // ====== КЛАВИША ESC ДЛЯ ЗАКРЫТИЯ ======
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") {
-        closeModal();
-      }
-    });
+    };
   </script>
+
 </body>
 </html>
