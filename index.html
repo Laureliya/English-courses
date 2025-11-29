@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -38,14 +38,21 @@
     h1 {
       font-size: 2.5rem;
       color: var(--primary);
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
 
     .subtitle {
-      font-size: 1.1rem;
-      color: #666;
-      /* 👇 СЮДА можно добавить другой шрифт, если нужно */
-      /* font-family: 'Comic Sans MS', cursive; */
+      font-size: 1.25rem;
+      font-weight: 600;
+      line-height: 1.5;
+      background: linear-gradient(90deg, #1abc9c, #50c878);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 10px;
+      text-shadow: 0 1px 2px rgba(26, 188, 156, 0.1);
     }
 
     /* ======= КАРТОЧКИ КУРСОВ ======= */
@@ -62,11 +69,12 @@
       border-radius: 16px;
       overflow: hidden;
       box-shadow: 0 6px 20px var(--shadow);
-      transition: transform 0.3s ease;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
     .course-card:hover {
       transform: translateY(-8px);
+      box-shadow: 0 12px 28px rgba(74, 144, 226, 0.25);
     }
 
     .course-image {
@@ -89,29 +97,33 @@
     .course-desc {
       font-size: 0.95rem;
       color: #555;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
+      line-height: 1.5;
     }
 
     .course-price {
       font-weight: bold;
-      font-size: 1.2rem;
+      font-size: 1.4rem;
       color: var(--secondary);
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
 
     .buy-btn {
       background-color: var(--secondary);
       color: white;
       border: none;
-      padding: 8px 16px;
-      border-radius: 8px;
+      padding: 10px 20px;
+      border-radius: 10px;
       cursor: pointer;
       font-weight: bold;
-      transition: background 0.2s;
+      transition: background 0.2s, transform 0.1s;
+      width: 100%;
+      font-size: 1rem;
     }
 
     .buy-btn:hover {
       background-color: #3cb766;
+      transform: scale(1.03);
     }
 
     /* ======= МОДАЛЬНОЕ ОКНО ======= */
@@ -144,9 +156,14 @@
       position: absolute;
       top: 15px;
       right: 20px;
-      font-size: 1.5rem;
+      font-size: 1.8rem;
       cursor: pointer;
       color: #888;
+      transition: color 0.2s;
+    }
+
+    .close-modal:hover {
+      color: #e74c3c;
     }
 
     .modal-header {
@@ -194,6 +211,7 @@
       background: #ccc;
       margin: 0 5px;
       cursor: pointer;
+      transition: background 0.2s;
     }
 
     .carousel-dot.active {
@@ -207,25 +225,27 @@
     .modal-desc {
       margin: 15px 0;
       line-height: 1.6;
+      color: #555;
     }
 
     .modal-price {
-      font-size: 1.4rem;
+      font-size: 1.6rem;
       font-weight: bold;
       color: var(--secondary);
-      margin: 10px 0;
+      margin: 12px 0;
     }
 
     .modal-buy-btn {
       background-color: var(--secondary);
       color: white;
       border: none;
-      padding: 10px 24px;
-      border-radius: 8px;
+      padding: 12px 28px;
+      border-radius: 10px;
       font-size: 1.1rem;
       font-weight: bold;
       cursor: pointer;
       margin-top: 15px;
+      transition: background 0.2s;
     }
 
     .modal-buy-btn:hover {
@@ -237,47 +257,47 @@
 
   <header>
     <h1>✨ English Adventures for Kids</h1>
-    <p class="subtitle">Fun, engaging, and effective English courses for children aged 6–12</p>
+    <p class="subtitle">Где английский — это игра, а каждый урок открывает дверь в волшебный мир знаний!</p>
   </header>
 
   <main>
     <div class="courses-grid">
-      <!-- ============ КУРС 1 ============ -->
+      <!-- КУРС 1 -->
       <div class="course-card">
-        <img src="https://via.placeholder.com/300x180/e0f0ff/4a90e2?text=Play+English" alt="English Through Play" class="course-image">
+        <img src="images/course1.jpg" alt="English Through Play" class="course-image">
         <div class="course-content">
           <h3 class="course-title">English Through Play</h3>
-          <p class="course-desc">Learn English through songs, games, and creative activities!</p>
-          <div class="course-price">$99</div>
-          <button class="buy-btn" onclick="openModal(0)">Buy now</button>
+          <p class="course-desc">Учим английский через песни, игры и творческие задания — весело и без стресса!</p>
+          <div class="course-price">6900 ₽</div>
+          <button class="buy-btn" onclick="openModal(0)">Купить сейчас</button>
         </div>
       </div>
 
-      <!-- ============ КУРС 2 ============ -->
+      <!-- КУРС 2 -->
       <div class="course-card">
-        <img src="https://via.placeholder.com/300x180/e0f0ff/4a90e2?text=Story+Time" alt="Story Time English" class="course-image">
+        <img src="images/course2.jpg" alt="Story Time English" class="course-image">
         <div class="course-content">
           <h3 class="course-title">Story Time English</h3>
-          <p class="course-desc">Engaging stories to build vocabulary and listening skills.</p>
-          <div class="course-price">$119</div>
-          <button class="buy-btn" onclick="openModal(1)">Buy now</button>
+          <p class="course-desc">Захватывающие истории для развития слуха, словарного запаса и уверенности в речи.</p>
+          <div class="course-price">7900 ₽</div>
+          <button class="buy-btn" onclick="openModal(1)">Купить сейчас</button>
         </div>
       </div>
 
-      <!-- ============ КУРС 3 ============ -->
+      <!-- КУРС 3 -->
       <div class="course-card">
-        <img src="https://via.placeholder.com/300x180/e0f0ff/4a90e2?text=Grammar+Fun" alt="Grammar Fun" class="course-image">
+        <img src="images/course3.jpg" alt="Grammar Fun" class="course-image">
         <div class="course-content">
           <h3 class="course-title">Grammar Fun</h3>
-          <p class="course-desc">Playful grammar practice for confident speaking and writing.</p>
-          <div class="course-price">$109</div>
-          <button class="buy-btn" onclick="openModal(2)">Buy now</button>
+          <p class="course-desc">Грамматика без зубрёжки! Игры, задания и мини-квесты для уверенного письма и речи.</p>
+          <div class="course-price">8900 ₽</div>
+          <button class="buy-btn" onclick="openModal(2)">Купить сейчас</button>
         </div>
       </div>
     </div>
   </main>
 
-  <!-- ============ МОДАЛЬНОЕ ОКНО ============ -->
+  <!-- МОДАЛЬНОЕ ОКНО -->
   <div class="modal" id="courseModal">
     <div class="modal-content">
       <span class="close-modal" onclick="closeModal()">&times;</span>
@@ -291,41 +311,38 @@
       <div class="modal-body">
         <p class="modal-desc" id="modalCourseDesc"></p>
         <div class="modal-price" id="modalCoursePrice"></div>
-        <button class="modal-buy-btn">Buy now</button>
+        <button class="modal-buy-btn">Купить сейчас</button>
       </div>
     </div>
   </div>
 
   <script>
-    // Данные курсов
     const courses = [
       {
         title: "English Through Play",
-        desc: "Learn English through songs, games, and creative activities! Includes printable worksheets, audio tracks, and teacher's guide.",
-        price: "6900р",
-        images: [images: ["images/course1-detail1.jpg", "images/course1-detail2.jpg"]
-          IMAGES/photo1.png.png,
-          "https://via.placeholder.com/800x250/e0f0ff/4a90e2?text=Play+English+2",
-          "https://via.placeholder.com/800x250/e0f0ff/4a90e2?text=Play+English+3"
+        desc: "Учим английский через песни, игры и творческие задания — весело и без стресса! В комплекте: PDF-материалы, аудиозаписи, методические рекомендации для родителей.",
+        price: "6900 ₽",
+        images: [
+          "images/course1-detail1.jpg",
+          "images/course1-detail2.jpg"
         ]
       },
       {
         title: "Story Time English",
-        desc: "Engaging stories to build vocabulary and listening skills. Each story comes with comprehension questions and role-play ideas.",
-        price: "7900р",
+        desc: "Захватывающие истории для развития слуха, словарного запаса и уверенности в речи. Каждая история сопровождается упражнениями и идеями для ролевых игр.",
+        price: "7900 ₽",
         images: [
-          "https://via.placeholder.com/800x250/e0f0ff/4a90e2?text=Story+Time+1",
-          "https://via.placeholder.com/800x250/e0f0ff/4a90e2?text=Story+Time+2"
+          "images/course2-detail1.jpg",
+          "images/course2-detail2.jpg"
         ]
       },
       {
         title: "Grammar Fun",
-        desc: "Playful grammar practice for confident speaking and writing. Designed as interactive exercises and printable board games.",
-        price: "5900р",
+        desc: "Грамматика без зубрёжки! Игры, задания и мини-квесты для уверенного письма и речи. Подходит для детей 8–12 лет, даже если они «боятся» грамматики.",
+        price: "8900 ₽",
         images: [
-          "https://via.placeholder.com/800x250/e0f0ff/4a90e2?text=Grammar+Fun+1",
-          "https://via.placeholder.com/800x250/e0f0ff/4a90e2?text=Grammar+Fun+2",
-          "https://via.placeholder.com/800x250/e0f0ff/4a90e2?text=Grammar+Fun+3"
+          "images/course3-detail1.jpg",
+          "images/course3-detail2.jpg"
         ]
       }
     ];
@@ -338,12 +355,10 @@
       currentCourseIndex = courseIndex;
       currentSlide = 0;
 
-      // Заполняем данные
       document.getElementById('modalCourseTitle').textContent = course.title;
       document.getElementById('modalCourseDesc').textContent = course.desc;
       document.getElementById('modalCoursePrice').textContent = course.price;
 
-      // Генерируем изображения
       const imagesContainer = document.getElementById('carouselImages');
       imagesContainer.innerHTML = '';
       course.images.forEach(src => {
@@ -353,7 +368,6 @@
         imagesContainer.appendChild(img);
       });
 
-      // Генерируем точки
       const dotsContainer = document.getElementById('carouselDots');
       dotsContainer.innerHTML = '';
       course.images.forEach((_, i) => {
@@ -363,7 +377,6 @@
         dotsContainer.appendChild(dot);
       });
 
-      // Показываем модалку
       document.getElementById('courseModal').style.display = 'flex';
     }
 
@@ -373,17 +386,12 @@
 
     function goToSlide(index) {
       currentSlide = index;
-      const container = document.getElementById('carouselImages');
-      container.style.transform = `translateX(-${index * 100}%)`;
-
-      // Обновляем активную точку
-      const dots = document.querySelectorAll('.carousel-dot');
-      dots.forEach((dot, i) => {
+      document.getElementById('carouselImages').style.transform = `translateX(-${index * 100}%)`;
+      document.querySelectorAll('.carousel-dot').forEach((dot, i) => {
         dot.classList.toggle('active', i === index);
       });
     }
 
-    // Закрытие по клику вне модального окна
     window.onclick = function(event) {
       const modal = document.getElementById('courseModal');
       if (event.target === modal) {
