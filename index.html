@@ -5,14 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Angelica's English Courses for Kids</title>
   <style>
-    /* ======= ОБЩИЕ СТИЛИ ======= */
     :root {
-      /* Мягкая, дружелюбная палитра */
       --primary: #4a90e2;       /* мягкий синий */
       --secondary: #50c878;     /* свежая бирюза/зелень */
-      --light-bg:  #79e9f7;     /* светло-бирюзовый фон */
+      --light-bg: #79e9f7;      /* светло-бирюзовый фон */
       --card-bg: #ffffff;
       --text: #333333;
+      --desc-text: #555;        /* для описаний в карточках */
       --shadow: rgba(0, 0, 0, 0.1);
     }
 
@@ -42,20 +41,12 @@
     }
 
     .subtitle {
-      font-size: 1.25rem;
-      font-weight: 600;
+      font-size: 1.1rem;
+      color: var(--primary);   /* СДЕЛАНО СИНИМ, КАК В МАКЕТЕ */
+      font-weight: 400;
       line-height: 1.5;
-      background: linear-gradient(90deg, #1abc9c, #50c878);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 0 10px;
-      text-shadow: 0 1px 2px rgba(26, 188, 156, 0.1);
     }
 
-    /* ======= КАРТОЧКИ КУРСОВ ======= */
     .courses-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -69,12 +60,11 @@
       border-radius: 16px;
       overflow: hidden;
       box-shadow: 0 6px 20px var(--shadow);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      transition: transform 0.3s ease;
     }
 
     .course-card:hover {
       transform: translateY(-8px);
-      box-shadow: 0 12px 28px rgba(74, 144, 226, 0.25);
     }
 
     .course-image {
@@ -96,7 +86,7 @@
 
     .course-desc {
       font-size: 0.95rem;
-      color: #555;
+      color: var(--desc-text);   /* ТЁПЛЫЙ ТЁМНО-СЕРЫЙ — НЕ ТУСКЛЫЙ */
       margin-bottom: 14px;
       line-height: 1.5;
     }
@@ -116,14 +106,13 @@
       border-radius: 10px;
       cursor: pointer;
       font-weight: bold;
-      transition: background 0.2s, transform 0.1s;
+      transition: background 0.2s;
       width: 100%;
       font-size: 1rem;
     }
 
     .buy-btn:hover {
       background-color: #3cb766;
-      transform: scale(1.03);
     }
 
     /* ======= МОДАЛЬНОЕ ОКНО ======= */
@@ -159,11 +148,6 @@
       font-size: 1.8rem;
       cursor: pointer;
       color: #888;
-      transition: color 0.2s;
-    }
-
-    .close-modal:hover {
-      color: #e74c3c;
     }
 
     .modal-header {
@@ -176,7 +160,6 @@
       margin-bottom: 10px;
     }
 
-    /* ======= КАРУСЕЛЬ ИЗОБРАЖЕНИЙ ======= */
     .carousel {
       position: relative;
       width: 100%;
@@ -211,7 +194,6 @@
       background: #ccc;
       margin: 0 5px;
       cursor: pointer;
-      transition: background 0.2s;
     }
 
     .carousel-dot.active {
@@ -225,7 +207,7 @@
     .modal-desc {
       margin: 15px 0;
       line-height: 1.6;
-      color: #555;
+      color: var(--desc-text);
     }
 
     .modal-price {
@@ -245,7 +227,6 @@
       font-weight: bold;
       cursor: pointer;
       margin-top: 15px;
-      transition: background 0.2s;
     }
 
     .modal-buy-btn:hover {
@@ -257,7 +238,7 @@
 
   <header>
     <h1>✨ English Adventures for Kids</h1>
-    <p class="subtitle">Где английский — это игра, а каждый урок открывает дверь в волшебный мир знаний!</p>
+    <p class="subtitle">Fun, engaging, and effective English courses for children aged 6–12</p>
   </header>
 
   <main>
@@ -267,9 +248,9 @@
         <img src="images/course1.jpg" alt="English Through Play" class="course-image">
         <div class="course-content">
           <h3 class="course-title">English Through Play</h3>
-          <p class="course-desc">Учим английский через песни, игры и творческие задания — весело и без стресса!</p>
+          <p class="course-desc">Learn English through songs, games, and creative activities!</p>
           <div class="course-price">6900 ₽</div>
-          <button class="buy-btn" onclick="openModal(0)">Купить сейчас</button>
+          <button class="buy-btn" onclick="openModal(0)">Buy now</button>
         </div>
       </div>
 
@@ -278,9 +259,9 @@
         <img src="images/course2.jpg" alt="Story Time English" class="course-image">
         <div class="course-content">
           <h3 class="course-title">Story Time English</h3>
-          <p class="course-desc">Захватывающие истории для развития слуха, словарного запаса и уверенности в речи.</p>
+          <p class="course-desc">Engaging stories to build vocabulary and listening skills.</p>
           <div class="course-price">7900 ₽</div>
-          <button class="buy-btn" onclick="openModal(1)">Купить сейчас</button>
+          <button class="buy-btn" onclick="openModal(1)">Buy now</button>
         </div>
       </div>
 
@@ -289,9 +270,9 @@
         <img src="images/course3.jpg" alt="Grammar Fun" class="course-image">
         <div class="course-content">
           <h3 class="course-title">Grammar Fun</h3>
-          <p class="course-desc">Грамматика без зубрёжки! Игры, задания и мини-квесты для уверенного письма и речи.</p>
+          <p class="course-desc">Playful grammar practice for confident speaking and writing.</p>
           <div class="course-price">8900 ₽</div>
-          <button class="buy-btn" onclick="openModal(2)">Купить сейчас</button>
+          <button class="buy-btn" onclick="openModal(2)">Buy now</button>
         </div>
       </div>
     </div>
@@ -311,7 +292,7 @@
       <div class="modal-body">
         <p class="modal-desc" id="modalCourseDesc"></p>
         <div class="modal-price" id="modalCoursePrice"></div>
-        <button class="modal-buy-btn">Купить сейчас</button>
+        <button class="modal-buy-btn">Buy now</button>
       </div>
     </div>
   </div>
@@ -320,7 +301,7 @@
     const courses = [
       {
         title: "English Through Play",
-        desc: "Учим английский через песни, игры и творческие задания — весело и без стресса! В комплекте: PDF-материалы, аудиозаписи, методические рекомендации для родителей.",
+        desc: "Learn English through songs, games, and creative activities! Includes printable worksheets, audio tracks, and teacher's guide.",
         price: "6900 ₽",
         images: [
           "images/course1-detail1.jpg",
@@ -329,7 +310,7 @@
       },
       {
         title: "Story Time English",
-        desc: "Захватывающие истории для развития слуха, словарного запаса и уверенности в речи. Каждая история сопровождается упражнениями и идеями для ролевых игр.",
+        desc: "Engaging stories to build vocabulary and listening skills. Each story comes with comprehension questions and role-play ideas.",
         price: "7900 ₽",
         images: [
           "images/course2-detail1.jpg",
@@ -338,7 +319,7 @@
       },
       {
         title: "Grammar Fun",
-        desc: "Грамматика без зубрёжки! Игры, задания и мини-квесты для уверенного письма и речи. Подходит для детей 8–12 лет, даже если они «боятся» грамматики.",
+        desc: "Playful grammar practice for confident speaking and writing. Designed as interactive exercises and printable board games.",
         price: "8900 ₽",
         images: [
           "images/course3-detail1.jpg",
