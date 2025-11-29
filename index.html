@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Angelica's English Courses for Kids</title>
 
-  <!-- Подключение шрифта Nunito (дружелюбный, детский, современный) -->
+  <!-- Подключение шрифта Nunito -->
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
@@ -59,24 +59,31 @@
       margin: 0 auto;
     }
 
-   .course-card {
-  background: var(--card-bg);
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 6px 20px var(--shadow);
-  transition: transform 0.3s ease;
-  padding: 15px;
-}
+    .course-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 6px 20px var(--shadow);
+      transition: transform 0.3s ease;
+      padding: 15px;
+    }
 
-.course-image {
-  width: 280px;
-  height: 180px;
-  object-fit: cover;
-  object-position: center;
-  border-radius: 16px 16px 0 0;
-  background-color: #e0f0ff;
-  transform: translateX(20px); /* ← Сдвигаем вправо */
-}
+    /* === КОНТЕЙНЕР ДЛЯ ФОТО — СМЕЩАЕМ ВПРАВО === */
+    .image-container {
+      width: 100%;
+      display: flex;
+      justify-content: flex-start; /* ← Выравниваем по левому краю */
+      padding-left: 20px; /* ← Смещаем вправо */
+    }
+
+    .course-image {
+      width: 280px;
+      height: 180px;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 16px 16px 0 0;
+      background-color: #e0f0ff;
+    }
 
     .course-content {
       padding: 20px;
@@ -88,13 +95,12 @@
       color: var(--primary);
     }
 
-    /* === ШРИФТ ДЛЯ ОПИСАНИЯ В КАРТОЧКАХ === */
     .course-desc {
       font-size: 0.95rem;
       color: var(--desc-text);
       margin-bottom: 14px;
       line-height: 1.5;
-      font-family: 'Nunito', sans-serif; /* ← НОВЫЙ ШРИФТ */
+      font-family: 'Nunito', sans-serif;
       font-weight: 400;
     }
 
@@ -215,7 +221,7 @@
       margin: 15px 0;
       line-height: 1.6;
       color: var(--desc-text);
-      font-family: 'Nunito', sans-serif; /* ← Также в модальном окне */
+      font-family: 'Nunito', sans-serif;
       font-weight: 400;
     }
 
@@ -253,21 +259,23 @@
   <main>
     <div class="courses-grid">
       <!-- КУРС 1 -->
-     <div class="course-card">
-  <div class="image-container">
-    <img src="images/course1.jpg" alt="English Through Play" class="course-image">
-  </div>
-  <div class="course-content">
-    <h3 class="course-title">English Through Play</h3>
-    <p class="course-desc">Learn English through songs, games, and creative activities!</p>
-    <div class="course-price">6900 ₽</div>
-    <button class="buy-btn" onclick="openModal(0)">Buy now</button>
-  </div>
-</div>
+      <div class="course-card">
+        <div class="image-container">
+          <img src="images/course1.jpg" alt="English Through Play" class="course-image">
+        </div>
+        <div class="course-content">
+          <h3 class="course-title">English Through Play</h3>
+          <p class="course-desc">Learn English through songs, games, and creative activities!</p>
+          <div class="course-price">6900 ₽</div>
+          <button class="buy-btn" onclick="openModal(0)">Buy now</button>
+        </div>
+      </div>
 
       <!-- КУРС 2 -->
       <div class="course-card">
-        <img src="images/photo2.png">
+        <div class="image-container">
+          <img src="images/course2.jpg" alt="Story Time English" class="course-image">
+        </div>
         <div class="course-content">
           <h3 class="course-title">Story Time English</h3>
           <p class="course-desc">Engaging stories to build vocabulary and listening skills.</p>
@@ -278,7 +286,9 @@
 
       <!-- КУРС 3 -->
       <div class="course-card">
-        <img src="images/photo3.png">
+        <div class="image-container">
+          <img src="images/course3.jpg" alt="Grammar Fun" class="course-image">
+        </div>
         <div class="course-content">
           <h3 class="course-title">Grammar Fun</h3>
           <p class="course-desc">Playful grammar practice for confident speaking and writing.</p>
